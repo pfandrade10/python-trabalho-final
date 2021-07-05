@@ -3,13 +3,13 @@
 {% block content %}
 
 <div class="container">
+  <h3>Relatório de contas a receber</h3>        
+  <h5>Escolha o período final para gerar o relatório</h5>
   <div class="row">
-    <div class="col-md-12">
-      <h3>Relatório de contas a receber</h3>        
-      <h5>Escolha o período final para gerar o relatório</h5>
+    <div class="col-md-6">
       <form action="{% url 'receive_bills_report' %}" method="POST">{% csrf_token %}
         <div class="form-group">
-          <input class="form-control" type="date" name="receive_date" id="receive_date" required>
+          <input class="form-control" type="date" name="dataRecebimento" id="dataRecebimento" required>
         </div>
         <button type="submit" class="btn btn-primary">Gerar</button>
       </form>
@@ -29,9 +29,9 @@
       <tbody>
         {% for receive in receive_bills %}
         <tr>
-          <td>{{receive.receive_date | date:"d/m/Y"}}</td>
-          <td>R$ {{receive.value | floatformat:2}}</td>
-          <td>{{receive.description}}</td>
+          <td>{{receive.dataRecebimento | date:"d/m/Y"}}</td>
+          <td>R$ {{receive.valor | floatformat:2}}</td>
+          <td>{{receive.descricao}}</td>
         </tr>
         {% endfor %}
       </tbody>

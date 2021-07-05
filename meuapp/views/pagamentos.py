@@ -27,6 +27,6 @@ def create_pay_bills(request: HttpRequest):
 
     category = Classificacao.objects.get(id=_category_id)
 
-    ContaPagar.objects.create(valor=_value, descricao=_description, validade=_due_date, dataPagamento=_pay_date, formaPagamento=_payment, situcao=_status, classificacao=category)
+    ContaPagar.objects.create(valor=_value, descricao=_description, validade=_due_date, dataPagamento=_pay_date, formaPagamento=_payment, situacao=_status, classificacao=category)
 
     return redirect(resolve_url('home'))

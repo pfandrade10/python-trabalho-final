@@ -14,7 +14,7 @@ class ContaReceberManager(models.Manager):
     receives = []
 
     for i in range(1, categories):
-      sum_receives = float(ContaReceber.objects.filter(dataRecebimento__month=month, dataRecebimento__year=year, category=i).aggregate(Sum('valor'))['valor__sum'] or 0)
+      sum_receives = float(ContaReceber.objects.filter(dataRecebimento__month=month, dataRecebimento__year=year, classificacao=i).aggregate(Sum('valor'))['valor__sum'] or 0)
       pay = {
         'category': Classificacao.objects.get(id=i),
         'sum_receives': sum_receives

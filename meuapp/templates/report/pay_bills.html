@@ -3,13 +3,13 @@
 {% block content %}
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h3>Relatório de contas a pagar</h3>        
+  <h3>Relatório de contas a pagar</h3>        
       <h5>Escolha o período final para gerar o relatório</h5>
+  <div class="row">
+    <div class="col-md-6">
       <form action="{% url 'pay_bills_report' %}" method="POST">{% csrf_token %}
         <div class="form-group">
-          <input class="form-control" type="date" name="due_date" id="due_date" required>
+          <input class="form-control" type="date" name="validade" id="validade" required>
         </div>
         <button type="submit" class="btn btn-primary">Gerar</button>
       </form>
@@ -30,10 +30,10 @@
       <tbody>
         {% for pay in pay_bills %}
         <tr>
-          <td>{{pay.due_date | date:"d/m/Y"}}</td>
-          <td>{{pay.pay_date | date:"d/m/Y"}}</td>
-          <td>R$ {{pay.value | floatformat:2}}</td>
-          <td>{{pay.description}}</td>
+          <td>{{pay.validade | date:"d/m/Y"}}</td>
+          <td>{{pay.dataPagamento | date:"d/m/Y"}}</td>
+          <td>R$ {{pay.valor | floatformat:2}}</td>
+          <td>{{pay.descricao}}</td>
         </tr>
         {% endfor %}
       </tbody>

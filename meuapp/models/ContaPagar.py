@@ -15,7 +15,7 @@ class ContaPagarManager(models.Manager):
     pays = []
 
     for i in range(1, categories):
-      sum_pays = float(ContaPagar.objects.filter(validade__month=month, validade__year=year, category=i).aggregate(Sum('valor'))['valor__sum'] or 0)
+      sum_pays = float(ContaPagar.objects.filter(validade__month=month, validade__year=year, classificacao=i).aggregate(Sum('valor'))['valor__sum'] or 0)
       pay = {
         'category': Classificacao.objects.get(id=i),
         'sum_pays': sum_pays

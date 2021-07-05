@@ -8,7 +8,7 @@ def pay_bills_report(request: HttpRequest):
   if request.method == 'POST':
     data = request.POST
     _due_date = data['validade']
-    pay_bills = ContaPagar.objects.all().filter(due_date__lte=_due_date)
+    pay_bills = ContaPagar.objects.all().filter(validade__lte=_due_date)
     return render(request, 'report/pay_bills.html', { 'pay_bills': pay_bills })
   else:
     return render(request, 'report/pay_bills.html', { 'pay_bills': pay_bills })

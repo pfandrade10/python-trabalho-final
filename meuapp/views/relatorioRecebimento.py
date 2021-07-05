@@ -8,8 +8,8 @@ def receive_bills_report(request: HttpRequest):
   receive_bills = None
   if request.method == 'POST':
     data = request.POST
-    _receive_date = data['receive_date']
-    receive_bills = ContaReceber.objects.all().filter(receive_date__lte=_receive_date)
+    _receive_date = data['dataRecebimento']
+    receive_bills = ContaReceber.objects.all().filter(dataRecebimento__lte=_receive_date)
     return render(request, 'report/receive_bills.html', { 'receive_bills': receive_bills })
   else:
     return render(request, 'report/receive_bills.html', { 'receive_bills': receive_bills })
